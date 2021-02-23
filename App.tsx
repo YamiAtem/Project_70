@@ -2,12 +2,18 @@ import React from "react";
 import { Image } from "react-native";
 import { createAppContainer } from "react-navigation";
 import { createBottomTabNavigator } from "react-navigation-tabs";
+import { SafeAreaProvider } from 'react-native-safe-area-context'
 import ReadStoryScreen from "./screens/ReadStoryScreen";
 import WriteStoryScreen from "./screens/WriteStoryScreen";
 
 export default class App extends React.Component {
   render() {
-    return <AppContainer />;
+
+    return (
+      <SafeAreaProvider>
+        <AppContainer />
+      </SafeAreaProvider>
+    );
   }
 }
 
@@ -18,7 +24,7 @@ const TabNavigator = createBottomTabNavigator(
   },
   {
     defaultNavigationOptions: ({ navigation }) => ({
-      tabBarIcon: ({ }) => {
+      tabBarIcon: () => {
         const routeName = navigation.state.routeName;
         if (routeName === "ReadStory") {
           return (
